@@ -1,0 +1,14 @@
+---
+- name: Verify OpenVPN service is running
+  hosts: all
+  tasks:
+    - name: Check if OpenVPN service is running
+      service:
+        name: openvpn
+        state: started
+      register: openvpn_service
+
+    - name: Fail if OpenVPN service is not running
+      fail:
+        msg: "OpenVPN service is not running"
+      when: openvpn_service.status != 'running'

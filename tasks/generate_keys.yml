@@ -1,0 +1,5 @@
+- name: Generate Diffie-Hellman parameters
+  command: openssl dhparam -out /etc/openvpn/dh.pem 2048
+
+- name: Generate HMAC signature
+  command: openvpn --genkey --secret /etc/openvpn/keys/ta.key
